@@ -9,6 +9,8 @@ interface GetWeatherByCityProps {
   longitude: number;
 }
 
+type WeatherIconsResponse = "Clouds" | "Rain" | "Clear" | "Snow";
+
 export interface WeatherAPIResponseProps {
   list: {
     pop: number;
@@ -27,7 +29,7 @@ export interface WeatherAPIResponseProps {
       speed: number;
     };
     weather: {
-      main: "Clouds" | "Rain" | "Clear" | "Snow";
+      main: WeatherIconsResponse;
       description: string;
     }[];
   }[];
