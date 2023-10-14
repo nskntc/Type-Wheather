@@ -21,7 +21,6 @@ export function SelectCity({ onSelect }: Props) {
     setCity(response);
     setIsLoading(false);
   }
-  console.log(typeof city)
 
   useEffect(() => {
     if (search.trim().length === 0) {
