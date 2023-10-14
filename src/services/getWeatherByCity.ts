@@ -4,11 +4,38 @@ import { api } from "./api";
 import { getNextDays } from "../utils/getNextDays";
 import { weatherIcons } from "../utils/weatherIcons";
 
-export async function getWeatherByCity({ latitude, longitude }) {
-  const { data } = await api.get(`/forecast?lat=${latitude}&lon=${longitude}`);
-  const { main, weather, wind, pop } = data.list[0];
+interface GetWeatherByCityProps {
+  latitude: number;
+  longitude: number;
+}
 
-  console.log(weather)
+export interface WeatherAPIResponseProps {
+  list: {
+    pop: number;
+    main: {
+      temp: number
+      feels_like: number
+      temp_min: number
+      temp_max: number
+      pressure: number
+      sea_level: number
+      grnd_level: number
+      humidity: number
+      temp_kf: number
+    };
+    wind: {
+      speed: number;
+    };
+    weather: {
+      main: "Clouds" | "Rain" | "Clear" | "Snow";
+      description: string;
+    }[];
+  }[];
+}
+
+export async function getWeatherByCity({ latitude, longitude }: GetWeatherByCityProps) {
+  const { data } = await api.get<WeatherAPIResponseProps>(`/forecast?lat=${latitude}&lon=${longitude}`);
+  const { main, weather, wind, pop } = data.list[0];
 
   const today = {
     weather: {
