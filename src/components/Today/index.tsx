@@ -5,7 +5,15 @@ import { Logo } from '../Logo';
 import { SelectCity } from '../SelectCity';
 import { isDayTime } from '../../utils/isDayTime';
 
-export function Today({ city, weather, onSearchValue }) {
+import { WeatherResponseProps } from '../../services/getWeatherByCity';
+
+interface Props{
+  city: string;
+  weather: WeatherResponseProps;
+  onSearchValue: () => void;
+}
+
+export function Today({ city, weather, onSearchValue }: Props) {
   const today = dayjs(new Date()).format('dddd, DD [de] MMMM [de] YYYY');
   const isDay = isDayTime();
 

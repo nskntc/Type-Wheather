@@ -4,7 +4,7 @@ import { useEffect, useState } from 'react';
 import { Input } from '../Input';
 import { getCityByNameService, CityProps } from '../../services/getCityByNameService';
 
-export interface Props{
+interface Props{
   onSelect: (item: CityProps) => void
 }
 
